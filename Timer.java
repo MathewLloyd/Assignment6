@@ -277,6 +277,6 @@ public class Timer extends Thread {
 	/** Used for testing purposes (Seconds) */
 	private int m_second_test = 10;
 	/**used for turning testing on or off*/
-	private boolean m_test = true;
+	private boolean m_test = false;
 
 }

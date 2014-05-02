@@ -188,7 +188,7 @@ public class GameWindow extends JFrame {
 		if (test || m_test) {
             System.out.println("GameWindow :: GameWindow() BEGIN");
         }
-		boolean m_Trace = false;
+		boolean m_Trace = true;
 		
 		if(m_Trace) System.out.println
 			("GameWindow::GameWindow() - window initializing");

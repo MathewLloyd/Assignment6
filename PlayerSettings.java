@@ -57,24 +57,30 @@ public class PlayerSettings extends JFrame {
 	 * \param isOthello - boolean indicating whether or not to limit player 
 	 * colour choices in othello.
 	 */
-	public PlayerSettings(Game game, boolean isOthello) {
+	public PlayerSettings(Game game, String gameType) {
 		boolean test = false;
 		if (test || m_test) {
             System.out.println("PlayerSettings :: PlayerSettings() BEGIN");
             }
-		ISOTHELLO = isOthello;
-		if (isOthello) {
+		GAMETYPE = gameType;
+		if (GAMETYPE.equalsIgnoreCase("othello")) {
 			PLAYERCOLOUR_A1 = new JRadioButton("Black");
 			PLAYERCOLOUR_B1 = new JRadioButton("White");
 			PLAYERCOLOUR_A2 = new JRadioButton("Black");
 			PLAYERCOLOUR_B2 = new JRadioButton("White");
-		} else {
+		} else if (GAMETYPE.equalsIgnoreCase("connect4")){
 			PLAYERCOLOUR_A1 = new JRadioButton("Red");
 			PLAYERCOLOUR_B1 = new JRadioButton("Yellow");
 			PLAYERCOLOUR_A2 = new JRadioButton("Red");
 			PLAYERCOLOUR_B2 = new JRadioButton("Yellow");
+		}else{
+			PLAYERCOLOUR_A1 = new JRadioButton("Noughts");
+			PLAYERCOLOUR_B1 = new JRadioButton("Crosses");
+			PLAYERCOLOUR_A2 = new JRadioButton("Noughts");
+			PLAYERCOLOUR_B2 = new JRadioButton("Crosses");
 		}
 		m_game = game;
+		System.out.println(game);
 		windowInitialise();
 		buttonGroups();
 		listeners();
@@ -445,7 +451,7 @@ public class PlayerSettings extends JFrame {
 	public static void main(String args[]){
 		
 		Game game = new Othello();
-		PlayerSettings playerS = new PlayerSettings(game, true );
+		PlayerSettings playerS = new PlayerSettings(game, "othello" );
 		//Tests both getGame() and setGame
 		if(playerS.getGame() == game){
 			System.out.println("Test game successfully set");
@@ -494,7 +500,7 @@ public class PlayerSettings extends JFrame {
 				EASY2.doClick();
 			}
 			if (e.getSource() == HARD) {
-				if (ISOTHELLO) {
+				if (GAMETYPE.equals("othello")) {
 					m_player1 = new OthelloAI(m_game);
 				} else {
 					m_player1 = new ConnectFourAI(m_game);
@@ -507,7 +513,7 @@ public class PlayerSettings extends JFrame {
 				m_player2 = new AIEasy(m_game);
 			}
 			if (e.getSource() == HARD2) {
-				if (ISOTHELLO) {
+				if (GAMETYPE.equals("othello")) {
 					m_player2 = new OthelloAI(m_game);
 				} else {
 					m_player2 = new ConnectFourAI(m_game);
@@ -544,41 +550,45 @@ public class PlayerSettings extends JFrame {
 	            }
 
 			if (e.getSource() == PLAYERCOLOUR_A1) {
-				if (ISOTHELLO) {
+				if (GAMETYPE.equals("othello")) {
 					m_player1Color = Color.BLACK;
-				} else {
+				} else if(GAMETYPE.equals("connect4")){
 					m_player1Color = Color.RED;
-				}
+				}else{ m_player1Color = Color.BLACK;}
+				
 				if (!PLAYERCOLOUR_B2.isSelected()) {
 					PLAYERCOLOUR_B2.doClick();
 				}
 			}
 			if (e.getSource() == PLAYERCOLOUR_B1) {
-				if (ISOTHELLO) {
+				if (GAMETYPE.equals("othello")) {
 					m_player1Color = Color.WHITE;
-				} else {
-					m_player1Color = Color.YELLOW;
-				}
+				} else if(GAMETYPE.equals("connect4")) {
+					m_player1Color = Color.WHITE;
+				}else{m_player1Color = Color.YELLOW;}
+				
 				if (!PLAYERCOLOUR_A2.isSelected()) {
 					PLAYERCOLOUR_A2.doClick();
 				}
 			}
 			if (e.getSource() == PLAYERCOLOUR_A2) {
-				if (ISOTHELLO) {
+				if (GAMETYPE.equals("othello")) {
 					m_player2Color = Color.BLACK;
-				} else {
+				} else if(GAMETYPE.equals("connect4")) {
 					m_player2Color = Color.RED;
-				}
+				}else{	m_player2Color = Color.BLACK;}
+				
 				if (!PLAYERCOLOUR_B1.isSelected()) {
 					PLAYERCOLOUR_B1.doClick();
 				}
 			}
 			if (e.getSource() == PLAYERCOLOUR_B2) {
-				if (ISOTHELLO) {
+				if (GAMETYPE.equals("othello")) {
 					m_player2Color = Color.WHITE;
-				} else {
+				} else if(GAMETYPE.equals("connect4")) {
 					m_player2Color = Color.YELLOW;
-				}
+				}else{m_player2Color = Color.WHITE;}
+				
 				if (!PLAYERCOLOUR_A1.isSelected()) {
 					PLAYERCOLOUR_A1.doClick();
 					}
@@ -637,7 +647,7 @@ public class PlayerSettings extends JFrame {
 			}
 
 			if (e.getSource() == RESUME_BUTTON) {
-				if (ISOTHELLO) {
+				if (GAMETYPE.equals("othello")) {
 					OthelloLoader loader = new OthelloLoader(m_game);
 					try {
 						checkValid(loader);
@@ -724,7 +734,7 @@ public class PlayerSettings extends JFrame {
 	private final int YLINE3 = 2;
 	private final int YLINE4 = 3;
 	/** flag for game type */
-	private final boolean ISOTHELLO;
+	private final String GAMETYPE;
 	/** container object */
 	private Container player;
 	/** reference to player 1 */
