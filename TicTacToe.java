@@ -72,7 +72,7 @@ public class TicTacToe extends Game{
 		setWindow(new GameWindow(this));
 		getPlayer1().isYourMove();
 		getWindow().displayPlayerTurn(Game.PlayerTurn.PLAYER1);
-		if ((getPlayer1() instanceof ConnectFourAI || getPlayer1() instanceof 
+		if ((getPlayer1() instanceof ComputerHardPlayer || getPlayer1() instanceof 
 		                           AIEasy) && (getPlayer2() instanceof Human)) {
 			getPlayer1().sendMove();
 		}
@@ -92,7 +92,7 @@ public class TicTacToe extends Game{
 		setPlayerTurn(PlayerTurn.PLAYER1);
 		getPlayer1().isYourMove();
 		getWindow().displayPlayerTurn(Game.PlayerTurn.PLAYER1);
-		if ((getPlayer1() instanceof ConnectFourAI || getPlayer1() instanceof 
+		if ((getPlayer1() instanceof ComputerHardPlayer || getPlayer1() instanceof 
 		                           AIEasy) && (getPlayer2() instanceof Human)) {
 			getPlayer1().sendMove();
 		}
@@ -200,7 +200,7 @@ public class TicTacToe extends Game{
 				getGrid().setCoordinate(changes.get(i));
 			}
 			getWindow().displayGrid(getGrid());
-			//getWindow().SetAnimation("fall", changes);
+			getWindow().SetAnimation("null", changes);
 			setPlayer1Score(0);
 			setPlayer2Score(0);
 			for (int i = 0; i < getGrid().getGridWidth(); i++) {
@@ -331,7 +331,7 @@ public class TicTacToe extends Game{
 	private void checkRight(int x, int y) {
 		boolean test = false;
 		if (test || m_test)
-			System.out.println("ConnectFour::checkRight() - BEGIN");
+			System.out.println("TicTacToe::checkRight() - BEGIN");
 		Grid grid = getGrid();
 
 		Game.PlayerTurn Player = grid.getCoordinate(x, y).getValue();
@@ -350,7 +350,7 @@ public class TicTacToe extends Game{
 			}
 		}
 		if (test || m_test)
-			System.out.println("ConnectFour::checkRight() - END");
+			System.out.println("TicTacToe::checkRight() - END");
 	}
 
 	/**
@@ -365,7 +365,7 @@ public class TicTacToe extends Game{
 	private int countRight(Coordinate xy, Game.PlayerTurn Player) {
 		boolean test = false;
 		if (test || m_test)
-			System.out.println("ConnectFour::countRight() - BEGIN");
+			System.out.println("TicTacToe::countRight() - BEGIN");
 		int x = xy.getX();
 		int y = xy.getY();
 		int count = 0;
@@ -392,7 +392,7 @@ public class TicTacToe extends Game{
 			}
 		}
 		if (test || m_test)
-			System.out.println("ConnectFour::countRight() - END");
+			System.out.println("TicTacToe::countRight() - END");
 		return count;
 	}
 
@@ -408,7 +408,7 @@ public class TicTacToe extends Game{
 	private int countLeft(Coordinate xy, Game.PlayerTurn Player) {
 		boolean test = false;
 		if (test || m_test)
-			System.out.println("ConnectFour::countLeft() - BEGIN");
+			System.out.println("TicTacToe::countLeft() - BEGIN");
 		int x = xy.getX();
 		int y = xy.getY();
 		int count = 0;
@@ -435,7 +435,7 @@ public class TicTacToe extends Game{
 			}
 		}
 		if (test || m_test)
-			System.out.println("ConnectFour::countLeft() - END");
+			System.out.println("TicTacToe::countLeft() - END");
 		return count;
 	}
 
@@ -451,7 +451,7 @@ public class TicTacToe extends Game{
 	private void checkDown(int x, int y) {
 		boolean test = false;
 		if (test || m_test)
-			System.out.println("ConnectFour::checkDown() - BEGIN");
+			System.out.println("TicTacToe::checkDown() - BEGIN");
 		Grid grid = getGrid();
 
 		Game.PlayerTurn Player = grid.getCoordinate(x, y).getValue();
@@ -470,7 +470,7 @@ public class TicTacToe extends Game{
 			}
 		}
 		if (test || m_test)
-			System.out.println("ConnectFour::checkDown() - END");
+			System.out.println("TicTacToe::checkDown() - END");
 	}
 
 	/**
@@ -485,7 +485,7 @@ public class TicTacToe extends Game{
 	private int countDown(Coordinate xy, Game.PlayerTurn Player) {
 		boolean test = false;
 		if (test || m_test)
-			System.out.println("ConnectFour::countDown() - BEGIN");
+			System.out.println("TicTacToe::countDown() - BEGIN");
 		int x = xy.getX();
 		int y = xy.getY();
 		int count = 0;
@@ -512,7 +512,7 @@ public class TicTacToe extends Game{
 			}
 		}
 		if (test || m_test)
-			System.out.println("ConnectFour::countDown() - END");
+			System.out.println("TicTacToe::countDown() - END");
 		return count;
 	}
 
@@ -528,7 +528,7 @@ public class TicTacToe extends Game{
 	public int moveScore(Coordinate xy) {
 		boolean test = false;
 		if (test || m_test)
-			System.out.println("ConnectFour::moveScore() - BEGIN");
+			System.out.println("TicTacToe::moveScore() - BEGIN");
 		int count = 0;
 		int countDown = countDown(xy, getPlayerTurn());
 		int countDiagDown = countDiagonalDown(xy, getPlayerTurn());
@@ -556,7 +556,7 @@ public class TicTacToe extends Game{
 			count = 0;
 		}
 		if (test || m_test)
-			System.out.println("ConnectFour::moveScore() - END");
+			System.out.println("TicTacToe::moveScore() - END");
 		return count;
 
 	}
@@ -571,7 +571,7 @@ public class TicTacToe extends Game{
 	public int blockOpponentChecker(Coordinate xy) {
 		boolean test = false;
 		if (test || m_test)
-			System.out.println("ConnectFour::blockOpponentChecker() - BEGIN");
+			System.out.println("TicTacToe::blockOpponentChecker() - BEGIN");
 		Game.PlayerTurn Player;
 
 		if (getPlayerTurn() == Game.PlayerTurn.PLAYER1) {
@@ -601,7 +601,7 @@ public class TicTacToe extends Game{
 			}
 		}
 		if (test || m_test)
-			System.out.println("ConnectFour::blockOpponentChecker() - END");
+			System.out.println("TicTacToe::blockOpponentChecker() - END");
 		return count;
 	}
 
@@ -617,7 +617,7 @@ public class TicTacToe extends Game{
 	private int countDiagonalDown(Coordinate xy, Game.PlayerTurn Player) {
 		boolean test = false;
 		if (test || m_test)
-			System.out.println("ConnectFour::countDiagonalDown() - BEGIN");
+			System.out.println("TicTacToe::countDiagonalDown() - BEGIN");
 		int x = xy.getX();
 		int y = xy.getY();
 		int count = 0;
@@ -644,7 +644,7 @@ public class TicTacToe extends Game{
 			}
 		}
 		if (test || m_test)
-			System.out.println("ConnectFour::countDiagonalDown() - END");
+			System.out.println("TicTacToe::countDiagonalDown() - END");
 		return count;
 	}
 
@@ -659,7 +659,7 @@ public class TicTacToe extends Game{
 	private void checkDiagonalDown(int x, int y) {
 		boolean test = false;
 		if (test || m_test)
-			System.out.println("ConnectFour::checkDiagonalDown() - BEGIN");
+			System.out.println("TicTacToe::checkDiagonalDown() - BEGIN");
 		Grid grid = getGrid();
 
 		Game.PlayerTurn Player = grid.getCoordinate(x, y).getValue();
@@ -678,7 +678,7 @@ public class TicTacToe extends Game{
 			}
 		}
 		if (test || m_test)
-			System.out.println("ConnectFour::checkDiagonalDown() - END");
+			System.out.println("TicTacToe::checkDiagonalDown() - END");
 	}
 
 	/**
@@ -690,7 +690,7 @@ public class TicTacToe extends Game{
 	private void checkDiagonalUp(int x, int y) {
 		boolean test = false;
 		if (test || m_test)
-			System.out.println("ConnectFour::checkDiagonalUp() - BEGIN");
+			System.out.println("TicTacToe::checkDiagonalUp() - BEGIN");
 		Grid grid = getGrid();
 
 		Game.PlayerTurn Player = grid.getCoordinate(x, y).getValue();
@@ -710,7 +710,7 @@ public class TicTacToe extends Game{
 			}
 		}
 		if (test || m_test)
-			System.out.println("ConnectFour::checkDiagonalUp() - END");
+			System.out.println("TicTacToe::checkDiagonalUp() - END");
 	}
 
 	/**
@@ -726,7 +726,7 @@ public class TicTacToe extends Game{
 	private int countDiagonalUp(Coordinate xy, Game.PlayerTurn Player) {
 		boolean test = false;
 		if (test || m_test)
-			System.out.println("ConnectFour::countDiagonalUp() - BEGIN");
+			System.out.println("TicTacToe::countDiagonalUp() - BEGIN");
 		int x = xy.getX();
 		int y = xy.getY();
 		int count = 0;
@@ -753,7 +753,7 @@ public class TicTacToe extends Game{
 			}
 		}
 		if (test || m_test)
-			System.out.println("ConnectFour::countDiagonalUp() - END");
+			System.out.println("TicTacToe::countDiagonalUp() - END");
 		return count;
 	}
 
@@ -799,7 +799,7 @@ public class TicTacToe extends Game{
 		if (test || m_test) {
 			ConnectFour game = new ConnectFour();
 			Player player1 = new Human(game);
-			Player player2 = new ConnectFourAI(game);
+			Player player2 = new ComputerHardPlayer(game);
 			player1.setPlayerName("Gavin");
 			player2.setPlayerName("So");
 			player1.setPlayerColour(Color.RED);
@@ -854,7 +854,7 @@ public class TicTacToe extends Game{
 	/** store the pieces that will be flipped   */
 	private Set<Coordinate> m_p2 = new HashSet<Coordinate>();
 	/** test variable */
-    private static boolean m_test = true;
+    private static boolean m_test = false;
 	/** use to count the chain in different direction */
 	private final static int COUNT2 = 2;
 	/** use to count the chain in different direction */

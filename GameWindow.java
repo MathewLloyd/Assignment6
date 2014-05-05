@@ -386,16 +386,14 @@ public class GameWindow extends JFrame {
 		if (getGame().getPlayerTurn() == Game.PlayerTurn.PLAYER1) {
 			move.setValue(Game.PlayerTurn.PLAYER1);
 			getGame().getPlayer1().sendMove(move);
-			if (getGame().getPlayer2() instanceof OthelloAI
-				|| getGame().getPlayer2() instanceof ConnectFourAI
+			if (getGame().getPlayer2() instanceof ComputerHardPlayer
 				|| getGame().getPlayer2() instanceof AIEasy) {
 				getGame().getPlayer2().sendMove();
 			}
 		} else {
 			move.setValue(Game.PlayerTurn.PLAYER2);
 			getGame().getPlayer2().sendMove(move);
-			if (getGame().getPlayer1() instanceof OthelloAI
-					|| getGame().getPlayer1() instanceof ConnectFourAI
+			if (getGame().getPlayer1() instanceof ComputerHardPlayer
 					|| getGame().getPlayer1() instanceof AIEasy) {
 				getGame().getPlayer1().sendMove();
 
@@ -422,18 +420,20 @@ public class GameWindow extends JFrame {
 		Player m_player2;
 		if(m_gameControl instanceof Othello){
 			m_game = new Othello();
-		} else {
+		} else if(m_gameControl instanceof ConnectFour){
 			m_game = new ConnectFour();
+		}else{
+			m_game = new TicTacToe();
 		}
     	
 		getDrawing().getGridPanel().SetRun(false);
-		if(m_gameControl.getPlayer1() instanceof OthelloAI){
-			((OthelloAI)(m_gameControl.getPlayer1())).SetRun(false);
-			m_player1 = new OthelloAI(m_game,m_gameControl.getPlayer1().
+		if(m_gameControl.getPlayer1() instanceof ComputerHardPlayer){
+			((ComputerHardPlayer)(m_gameControl.getPlayer1())).SetRun(false);
+			m_player1 = new ComputerHardPlayer(m_game,m_gameControl.getPlayer1().
 			      getPlayerName(),m_gameControl.getPlayer1().getPlayerColour());
-		} else if(m_gameControl.getPlayer1() instanceof ConnectFourAI){
-			((ConnectFourAI)(m_gameControl.getPlayer1())).SetRun(false);
-			m_player1 = new ConnectFourAI(m_game,m_gameControl.getPlayer1().
+		} else if(m_gameControl.getPlayer1() instanceof ComputerHardPlayer){
+			((ComputerHardPlayer)(m_gameControl.getPlayer1())).SetRun(false);
+			m_player1 = new ComputerHardPlayer(m_game,m_gameControl.getPlayer1().
 			      getPlayerName(),m_gameControl.getPlayer1().getPlayerColour());
 		} else if(m_gameControl.getPlayer1() instanceof AIEasy){
 			((AIEasy)(m_gameControl.getPlayer1())).SetRun(false);
@@ -443,13 +443,13 @@ public class GameWindow extends JFrame {
 			m_player1 = new Human(m_game,m_gameControl.getPlayer1().
 			      getPlayerName(),m_gameControl.getPlayer1().getPlayerColour());
 		}
-		if(m_gameControl.getPlayer2() instanceof OthelloAI){
-			((OthelloAI)(m_gameControl.getPlayer2())).SetRun(false);
-			m_player2 = new OthelloAI(m_game,m_gameControl.getPlayer2().
+		if(m_gameControl.getPlayer2() instanceof ComputerHardPlayer){
+			((ComputerHardPlayer)(m_gameControl.getPlayer2())).SetRun(false);
+			m_player2 = new ComputerHardPlayer(m_game,m_gameControl.getPlayer2().
 			      getPlayerName(),m_gameControl.getPlayer2().getPlayerColour());
-		} else if(m_gameControl.getPlayer2() instanceof ConnectFourAI){
-			((ConnectFourAI)(m_gameControl.getPlayer2())).SetRun(false);
-			m_player2 = new ConnectFourAI(m_game,m_gameControl.getPlayer2().
+		} else if(m_gameControl.getPlayer2() instanceof ComputerHardPlayer){
+			((ComputerHardPlayer)(m_gameControl.getPlayer2())).SetRun(false);
+			m_player2 = new ComputerHardPlayer(m_game,m_gameControl.getPlayer2().
 			      getPlayerName(),m_gameControl.getPlayer2().getPlayerColour());
 		} else if(m_gameControl.getPlayer2() instanceof AIEasy){
 			((AIEasy)(m_gameControl.getPlayer2())).SetRun(false);
@@ -485,17 +485,17 @@ public class GameWindow extends JFrame {
             System.out.println("GameWindow :: returnMainWindow() BEGIN");
         }
 		getDrawing().getGridPanel().SetRun(false);
-		if(m_gameControl.getPlayer1() instanceof OthelloAI){
-			((OthelloAI)(m_gameControl.getPlayer1())).SetRun(false);
-		} else if(m_gameControl.getPlayer1() instanceof ConnectFourAI){
-			((ConnectFourAI)(m_gameControl.getPlayer1())).SetRun(false);
+		if(m_gameControl.getPlayer1() instanceof ComputerHardPlayer){
+			((ComputerHardPlayer)(m_gameControl.getPlayer1())).SetRun(false);
+		} else if(m_gameControl.getPlayer1() instanceof ComputerHardPlayer){
+			((ComputerHardPlayer)(m_gameControl.getPlayer1())).SetRun(false);
 		} else if(m_gameControl.getPlayer1() instanceof AIEasy){
 			((AIEasy)(m_gameControl.getPlayer1())).SetRun(false);
 		}
-		if(m_gameControl.getPlayer2() instanceof OthelloAI){
-			((OthelloAI)(m_gameControl.getPlayer2())).SetRun(false);
-		} else if(m_gameControl.getPlayer2() instanceof ConnectFourAI){
-			((ConnectFourAI)(m_gameControl.getPlayer2())).SetRun(false);
+		if(m_gameControl.getPlayer2() instanceof ComputerHardPlayer){
+			((ComputerHardPlayer)(m_gameControl.getPlayer2())).SetRun(false);
+		} else if(m_gameControl.getPlayer2() instanceof ComputerHardPlayer){
+			((ComputerHardPlayer)(m_gameControl.getPlayer2())).SetRun(false);
 		} else if(m_gameControl.getPlayer2() instanceof AIEasy){
 			((AIEasy)(m_gameControl.getPlayer2())).SetRun(false);
 		}	
@@ -539,8 +539,10 @@ public class GameWindow extends JFrame {
     						&& !(getGame().getPlayer2() instanceof Human))) {
     					if (getGame() instanceof Othello) {
     						saver = new OthelloSaver(getGame());
-    					} else {
+    					} else if (getGame() instanceof ConnectFour){
     						saver = new ConnectFourSaver(getGame());
+    					}else{
+    						saver = new TicTacToeSaver(getGame());
     					}
     
     					saver.saveGrid(getGame().getGrid().toString());
@@ -561,9 +563,12 @@ public class GameWindow extends JFrame {
                 if (getGame() instanceof Othello) {
                     gameToLoad = new Othello();
                     loader = new OthelloLoader(gameToLoad);
-                } else {
+                } else if(getGame() instanceof ConnectFour){
                     gameToLoad = new ConnectFour();
                     loader = new ConnectFourLoader(gameToLoad);
+                }else{
+                	gameToLoad = new TicTacToe();
+                	loader = new TicTacToeLoader(gameToLoad);
                 }
                 
                 if (checkValid(loader, gameToLoad)) {
@@ -600,10 +605,10 @@ public class GameWindow extends JFrame {
             getGame().getPlayer2().SetRun(false);
 
             
-            if(m_gameControl.getPlayer1() instanceof OthelloAI){
-                ((OthelloAI)(m_gameControl.getPlayer1())).SetRun(false);
-            } else if(m_gameControl.getPlayer1() instanceof ConnectFourAI){
-                ((ConnectFourAI)(m_gameControl.getPlayer1())).SetRun(false);
+            if(m_gameControl.getPlayer1() instanceof ComputerHardPlayer){
+                ((ComputerHardPlayer)(m_gameControl.getPlayer1())).SetRun(false);
+            } else if(m_gameControl.getPlayer1() instanceof ComputerHardPlayer){
+                ((ComputerHardPlayer)(m_gameControl.getPlayer1())).SetRun(false);
             } else if(m_gameControl.getPlayer1() instanceof AIEasy){
                 ((AIEasy)(m_gameControl.getPlayer1())).SetRun(false);
             }

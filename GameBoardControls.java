@@ -120,7 +120,7 @@ public class GameBoardControls extends MouseAdapter {
 		int testHeight = 30;
 		Game connect4 = new ConnectFour();
 		Player player1 = new Human(connect4);
-		Player player2 = new ConnectFourAI(connect4);
+		Player player2 = new ComputerHardPlayer(connect4);
 		player1.setPlayerName("Gavin");
 		player2.setPlayerName("Lucy");
 		player1.setPlayerColour(Color.RED);

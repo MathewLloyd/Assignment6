@@ -104,6 +104,7 @@ public class EndDisplay extends JFrame implements ActionListener {
 		}
 		g2.setColor(game.getPlayer1().getPlayerColour());
 		g2.fillOval(0, 0, OVALSIZE, OVALSIZE);
+		
 		player1Piece.setIcon(new ImageIcon(piece));
 		layout.setConstraints(player1Piece, c);
 		stats.add(player1Piece);
@@ -275,4 +276,5 @@ public class EndDisplay extends JFrame implements ActionListener {
     private Game m_game;
     /** test variable */
     private boolean m_test = true;
+    
 }

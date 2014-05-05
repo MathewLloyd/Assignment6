@@ -500,11 +500,9 @@ public class PlayerSettings extends JFrame {
 				EASY2.doClick();
 			}
 			if (e.getSource() == HARD) {
-				if (GAMETYPE.equals("othello")) {
-					m_player1 = new OthelloAI(m_game);
-				} else {
-					m_player1 = new ConnectFourAI(m_game);
-				}
+				
+					m_player1 = new ComputerHardPlayer(m_game);
+				
 			}
 			if (e.getSource() == EASY) {
 				m_player1 = new AIEasy(m_game);
@@ -513,11 +511,7 @@ public class PlayerSettings extends JFrame {
 				m_player2 = new AIEasy(m_game);
 			}
 			if (e.getSource() == HARD2) {
-				if (GAMETYPE.equals("othello")) {
-					m_player2 = new OthelloAI(m_game);
-				} else {
-					m_player2 = new ConnectFourAI(m_game);
-				}
+					m_player2 = new ComputerHardPlayer(m_game);
 			}
 			pack();
 			
@@ -554,7 +548,7 @@ public class PlayerSettings extends JFrame {
 					m_player1Color = Color.BLACK;
 				} else if(GAMETYPE.equals("connect4")){
 					m_player1Color = Color.RED;
-				}else{ m_player1Color = Color.BLACK;}
+				}else{ m_player1Color = Color.BLUE;}
 				
 				if (!PLAYERCOLOUR_B2.isSelected()) {
 					PLAYERCOLOUR_B2.doClick();
@@ -564,8 +558,8 @@ public class PlayerSettings extends JFrame {
 				if (GAMETYPE.equals("othello")) {
 					m_player1Color = Color.WHITE;
 				} else if(GAMETYPE.equals("connect4")) {
-					m_player1Color = Color.WHITE;
-				}else{m_player1Color = Color.YELLOW;}
+					m_player1Color = Color.YELLOW;
+				}else{m_player1Color = Color.DARK_GRAY;}
 				
 				if (!PLAYERCOLOUR_A2.isSelected()) {
 					PLAYERCOLOUR_A2.doClick();
@@ -576,7 +570,7 @@ public class PlayerSettings extends JFrame {
 					m_player2Color = Color.BLACK;
 				} else if(GAMETYPE.equals("connect4")) {
 					m_player2Color = Color.RED;
-				}else{	m_player2Color = Color.BLACK;}
+				}else{	m_player2Color = Color.BLUE;}
 				
 				if (!PLAYERCOLOUR_B1.isSelected()) {
 					PLAYERCOLOUR_B1.doClick();
@@ -587,7 +581,7 @@ public class PlayerSettings extends JFrame {
 					m_player2Color = Color.WHITE;
 				} else if(GAMETYPE.equals("connect4")) {
 					m_player2Color = Color.YELLOW;
-				}else{m_player2Color = Color.WHITE;}
+				}else{m_player2Color = Color.DARK_GRAY;}
 				
 				if (!PLAYERCOLOUR_A1.isSelected()) {
 					PLAYERCOLOUR_A1.doClick();
@@ -654,11 +648,18 @@ public class PlayerSettings extends JFrame {
 					} catch (InterruptedException e1) {
 						e1.printStackTrace();
 					}
-				} else {
+				} else if(GAMETYPE.equals("connectfour")){
 					ConnectFourLoader loader = new ConnectFourLoader(m_game);
 					try {
 						checkValid(loader);
 					} catch (InterruptedException e1) {
+						e1.printStackTrace();
+					}
+				}else{
+					TicTacToeLoader loader = new TicTacToeLoader(m_game);
+					try{
+						checkValid(loader);
+					}catch(InterruptedException e1){
 						e1.printStackTrace();
 					}
 				}
@@ -671,7 +672,7 @@ public class PlayerSettings extends JFrame {
 		}
 
 		/**
-		 * Author Gavin Bailey 711036
+		 * Author Gavin Bailey 711036, A4
 		 * This method checks that the file that is being loaded in is
 		 * correct and can be loaded up. 
 		 * Outputs an error message if the file cannot be loaded else will 

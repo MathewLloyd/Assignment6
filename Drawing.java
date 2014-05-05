@@ -458,6 +458,7 @@ public class Drawing {
 		}
 		g2.setColor(m_p1colour);
 		g2.fillOval(0, 0, OVALSIZE, OVALSIZE);
+		
 		if(m_Trace) System.out.println
 		("Drawing::SetPlayer1() - colour is " + Player1.getPlayerColour());
 		getPlayer1Piece().setIcon(new ImageIcon(m_p1piece));

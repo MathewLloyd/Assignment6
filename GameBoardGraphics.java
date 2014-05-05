@@ -377,7 +377,7 @@ public class GameBoardGraphics extends JComponent implements
 					}
 				}
 			}).start();
-		} else {
+		} else if(m_type.equals("flip")){
 			new Thread(new Runnable() {
 				public void run() {
 					if (m_running) {
@@ -455,8 +455,11 @@ public class GameBoardGraphics extends JComponent implements
 		Graphics2D g2 = (Graphics2D) g;
 		for (int i = 0; i < GRID_WIDTH; i += getSquareWidth()) {
 			for (int j = 0; j < GRID_HEIGHT; j += getSquareHeight()) {
+				paintTicBoard(g2,i,j);
 				paintFlip(g2, i, j);
+				
 				paintOthelloBoard(g2, i, j);
+				
 
 				if (m_type.equals("fall") && m_changes.size() > 0) {
 					if (i == m_changes.get(0).getX() * getSquareWidth()
@@ -492,9 +495,9 @@ public class GameBoardGraphics extends JComponent implements
 					|| PLAYER1_COLOUR.equals(Color.WHITE)) {
 				if (m_AImove != null && !m_changes.isEmpty() && ((m_changes.
 				        get(0).getValue() == Game.PlayerTurn.PLAYER1 &&
-						(m_player1 instanceof OthelloAI || m_player1 instanceof 
+						(m_player1 instanceof ComputerHardPlayer || m_player1 instanceof 
 						AIEasy)) || (m_changes.get(0).getValue() == Game.
-						PlayerTurn.PLAYER2 && (m_player2 instanceof OthelloAI 
+						PlayerTurn.PLAYER2 && (m_player2 instanceof ComputerHardPlayer 
 						                    || m_player2 instanceof AIEasy)))) {
 
 					g2.setColor(Color.RED);
@@ -503,7 +506,8 @@ public class GameBoardGraphics extends JComponent implements
 							+ MID_POSITION, m_AImove.getY() * getSquareHeight()
 							+ MID_POSITION, WINMARK_SIZE, WINMARK_SIZE);
 				}
-			} else {
+			} else if((PLAYER1_COLOUR.equals(Color.RED) ||
+					PLAYER1_COLOUR.equals(Color.YELLOW))){
 				m_d = this.getSize();
 				g2.setColor(Color.BLACK);
 				g2.drawLine(m_colX - ADJUST_POINT, 0, m_colX - ADJUST_POINT,
@@ -589,6 +593,36 @@ public class GameBoardGraphics extends JComponent implements
 		}
 		return true;
 	}
+	
+	/**
+	 * Method for drawing the TicTacToe game board 
+	 * \param g2 - graphics object to handle all the data for creating 
+	 * \param i - point X of the board 
+	 * \param j - point Y of the board \return true when the method completes
+	 */
+	public boolean paintTicBoard(Graphics2D g2, int i, int j) {
+		boolean test = false;
+		if (test || m_test) {
+			System.out
+					.println("GameBoardGraphics :: paintTicBoard() BEGIN");
+		}
+		
+			if (PLAYER1_COLOUR.equals(Color.DARK_GRAY)
+					|| PLAYER1_COLOUR.equals(Color.BLUE)) {
+				if (m_board == "board2") {
+					g2.drawImage(TICBOARD2, 0, 0, GRID_WIDTH, GRID_HEIGHT,null);
+				} else if (m_board == "board3") {
+					g2.drawImage(TICBOARD3, 0, 0, GRID_WIDTH, GRID_HEIGHT,null);
+				} else {
+					g2.drawImage(TICBOARD, 0, 0, GRID_WIDTH, GRID_HEIGHT,null);
+				}
+			
+		}
+		if (test || m_test) {
+			System.out.println("GameBoardGraphics :: paintOthelloBoard() END");
+		}
+		return true;
+	}
 
 	/**
 	 * Method for drawing the pieces to the game board 
@@ -611,7 +645,13 @@ public class GameBoardGraphics extends JComponent implements
 				} else if (PLAYER1_COLOUR.equals(Color.black)) {
 					g2.drawImage(BLACK, i + MID_DIFF, j + MID_DIFF, PIECE_SIZE,
 							PIECE_SIZE, null);
-				} else {
+				} else if(PLAYER1_COLOUR.equals(Color.DARK_GRAY)){
+					g2.drawImage(CROSSES, i + MID_DIFF, j + MID_DIFF, 
+							PIECE_SIZE,	PIECE_SIZE, null);
+				}else if(PLAYER1_COLOUR.equals(Color.BLUE)){
+					g2.drawImage(NAUGHTSBLUE, i + MID_DIFF, j + MID_DIFF, 
+							PIECE_SIZE,	PIECE_SIZE, null);
+				}else{
 					g2.setColor(PLAYER1_COLOUR);
 					g2.fillOval(i + MID_DIFF, j + MID_DIFF, PIECE_SIZE,
 							PIECE_SIZE);
@@ -624,7 +664,13 @@ public class GameBoardGraphics extends JComponent implements
 				} else if (PLAYER2_COLOUR.equals(Color.black)) {
 					g2.drawImage(BLACK, i + MID_DIFF, j + MID_DIFF, PIECE_SIZE,
 							PIECE_SIZE, null);
-				} else {
+				}  else if(PLAYER2_COLOUR.equals(Color.DARK_GRAY)){
+					g2.drawImage(CROSSES, i + MID_DIFF, j + MID_DIFF, 
+							PIECE_SIZE,	PIECE_SIZE, null);
+				}else if(PLAYER2_COLOUR.equals(Color.BLUE)){
+					g2.drawImage(NAUGHTSBLUE, i + MID_DIFF, j + MID_DIFF, 
+							PIECE_SIZE,	PIECE_SIZE, null);
+				}else {
 					g2.setColor(PLAYER2_COLOUR);
 					g2.fillOval(i + MID_DIFF, j + MID_DIFF, PIECE_SIZE,
 							PIECE_SIZE);
@@ -858,7 +904,7 @@ public class GameBoardGraphics extends JComponent implements
 	public static void main(String args[]) throws IOException,
 			InterruptedException {
 		Othello game = new Othello();
-		Player player1 = new OthelloAI(game);
+		Player player1 = new ComputerHardPlayer(game);
 		Player player2 = new AIEasy(game);
 		player1.setPlayerName("Gavin");
 		player2.setPlayerName("Lucy");
@@ -959,6 +1005,20 @@ public class GameBoardGraphics extends JComponent implements
 			"/resource/white.png"));
 	private final BufferedImage BLACK = ImageIO.read(getClass().getResource(
 			"/resource/black.png"));
+	private final BufferedImage NAUGHTS = ImageIO.read(getClass().getResource(
+			"/resource/naught.png"));
+	private final BufferedImage CROSSES = ImageIO.read(getClass().getResource(
+			"/resource/crosses.png"));
+	private final BufferedImage NAUGHTSBLUE = ImageIO.read(getClass().getResource(
+			"/resource/naughtBlue.png"));
+	private final BufferedImage CROSSESBLUE = ImageIO.read(getClass().getResource(
+			"/resource/crossesBlue.png"));
+	private final BufferedImage TICBOARD = ImageIO.read(getClass().getResource(
+			"/resource/ticBoard.png"));
+	private final BufferedImage TICBOARD2 = ImageIO.read(getClass().getResource(
+			"/resource/ticBoard2.png"));
+	private final BufferedImage TICBOARD3= ImageIO.read(getClass().getResource(
+			"/resource/ticBoard3.png"));
 	private String m_board;
 	private Coordinate m_AImove;
 	private boolean m_criticalSection;

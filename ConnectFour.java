@@ -69,7 +69,7 @@ public class ConnectFour extends Game {
 		setWindow(new GameWindow(this));
 		getPlayer1().isYourMove();
 		getWindow().displayPlayerTurn(Game.PlayerTurn.PLAYER1);
-		if ((getPlayer1() instanceof ConnectFourAI || getPlayer1() instanceof 
+		if ((getPlayer1() instanceof ComputerHardPlayer || getPlayer1() instanceof 
 		                           AIEasy) && (getPlayer2() instanceof Human)) {
 			getPlayer1().sendMove();
 		}
@@ -89,7 +89,7 @@ public class ConnectFour extends Game {
 		setPlayerTurn(PlayerTurn.PLAYER1);
 		getPlayer1().isYourMove();
 		getWindow().displayPlayerTurn(Game.PlayerTurn.PLAYER1);
-		if ((getPlayer1() instanceof ConnectFourAI || getPlayer1() instanceof 
+		if ((getPlayer1() instanceof ComputerHardPlayer || getPlayer1() instanceof 
 		                           AIEasy) && (getPlayer2() instanceof Human)) {
 			getPlayer1().sendMove();
 		}
@@ -101,7 +101,7 @@ public class ConnectFour extends Game {
 	/**
      * resets the game so a game can be loaded from file
      * 
-     * \param p - player whos turn it is 
+     * \param Player p - player whos turn it is 
      * \throws InterruptedException
      */
     public void resetGame(Player p ) throws InterruptedException {
@@ -803,7 +803,7 @@ public class ConnectFour extends Game {
 		if (test || m_test) {
 			ConnectFour game = new ConnectFour();
 			Player player1 = new Human(game);
-			Player player2 = new ConnectFourAI(game);
+			Player player2 = new ComputerHardPlayer(game);
 			player1.setPlayerName("Gavin");
 			player2.setPlayerName("So");
 			player1.setPlayerColour(Color.RED);
