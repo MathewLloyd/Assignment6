@@ -1,7 +1,7 @@
 import java.awt.Color;
 /**
  *  \\file	-Player.Java
- * 	\author	-C. Hazelton
+ * 	\author	-C. Hazelton A4
  * 	\date	-14/02/2014
  * 	
  * 	\brief	Gets move that returns coordinates. Contains name and colour 

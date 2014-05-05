@@ -7,7 +7,7 @@ import javax.swing.*;
 
 /**
  * \\file GameSelecter.java
- * \author Daniel 709547
+ * \author Daniel 709547 A4, Mathew Lloyd A6
  * \date 20/02/2014
  * 
  * \brief Class which handles the choice of starting a new game
@@ -16,6 +16,7 @@ import javax.swing.*;
  * the option of starting either a new othello or
  * connect 4 game at the start of the application
  * and if they choose to start a new game.
+ * --CHANGED 01/05/14 To add the selection for the new game
  */
 public class GameSelecter {
 	/**
@@ -257,13 +258,16 @@ public class GameSelecter {
 			Game game;
 			if (event.getSource() == getOthelloButton()) {
 				game = new Othello();
-				PlayerSettings playerSettings = new PlayerSettings(game, "othello");
+				PlayerSettings playerSettings = new PlayerSettings
+						(game, "othello");
 			} else if(event.getSource() == getConnect4Button()){
 				game = new ConnectFour();
-				PlayerSettings playerSettings = new PlayerSettings(game, "connect4");
+				PlayerSettings playerSettings = new PlayerSettings
+						(game, "connect4");
 			}else{
 				game = new TicTacToe();
-				PlayerSettings playerSettings = new PlayerSettings(game, "tictactoe");
+				PlayerSettings playerSettings = new PlayerSettings
+						(game, "tictactoe");
 			}
 			
 			getChooseFrame().dispose();

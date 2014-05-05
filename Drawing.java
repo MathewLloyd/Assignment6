@@ -53,8 +53,7 @@ public class Drawing {
 	}
 	/**
 	 * Method to set the animation speed
-	 * \param speed ,an integer, represents millisecond time 
-	 * delay per movement
+	 * \param speed an integer, represents millisecond time delay per movement
 	 */
 	private void setSpeed(int speed){
 		boolean test = false;
@@ -63,15 +62,17 @@ public class Drawing {
             }
 		gameBoardGraphics.SetSpeed(speed);
 		m_responseTime = BASETIME + speed*TIME_RATIO;
-		if(gameBoardGraphics.GetPlayer1() instanceof OthelloAI){
-			((OthelloAI)gameBoardGraphics.GetPlayer1()).SetTime(m_responseTime);
-		} else if(gameBoardGraphics.GetPlayer2() instanceof OthelloAI){		
-			((OthelloAI)gameBoardGraphics.GetPlayer2()).SetTime(m_responseTime);
-		} else if(gameBoardGraphics.GetPlayer1() instanceof ConnectFourAI){
-			((ConnectFourAI)gameBoardGraphics.GetPlayer1()).
+		if(gameBoardGraphics.GetPlayer1() instanceof ComputerHardPlayer){
+			((ComputerHardPlayer)gameBoardGraphics.GetPlayer1())
+			.SetTime(m_responseTime);
+		} else if(gameBoardGraphics.GetPlayer2() instanceof ComputerHardPlayer){		
+			((ComputerHardPlayer)gameBoardGraphics.GetPlayer2())
+			.SetTime(m_responseTime);
+		} else if(gameBoardGraphics.GetPlayer1() instanceof ComputerHardPlayer){
+			((ComputerHardPlayer)gameBoardGraphics.GetPlayer1()).
 			                                            SetTime(m_responseTime);
-		} else if(gameBoardGraphics.GetPlayer2() instanceof ConnectFourAI){
-			((ConnectFourAI)gameBoardGraphics.GetPlayer2()).
+		} else if(gameBoardGraphics.GetPlayer2() instanceof ComputerHardPlayer){
+			((ComputerHardPlayer)gameBoardGraphics.GetPlayer2()).
 			                                            SetTime(m_responseTime);
 		} else if(gameBoardGraphics.GetPlayer1() instanceof AIEasy){
 			((AIEasy)gameBoardGraphics.GetPlayer1()).SetTime(m_responseTime);
@@ -427,7 +428,8 @@ public class Drawing {
 	
 	/**
 	 * This method returns the side bar that was created.
-	 * \return m_sideBar - Returns the side bar which holds the scores for the game.
+	 * \return m_sideBar - Returns the side bar which holds the scores for 
+	 * the game.
 	 */
 	public JPanel getSideBarPanel() {
 		boolean test = false;

@@ -4,14 +4,15 @@ import java.util.*;
 
 /**
  * \\file -ConnectFour.java 
- * \author -G. Howard, Jake Plumley
+ * \author -G. Howard A4, Jake Plumley A5, Mathe Lloyd A6
  * \date -14/02/2014
  * 
  * \brief Class that extends Game by using the rules of ConnectFour.
  * 
  * Specifies the size of the board to be used. Sets the ways of winning
  * ConnectFour and what happens once happens once the game has ended. Doesn't
- * allow the user to click outside the grid.
+ * allow the user to click outside the grid. -- Changed on 01/05/14 to change
+ * the instanceof to ComputerHardPlayer to reflect the class changes
  */
 
 public class ConnectFour extends Game {
@@ -69,8 +70,8 @@ public class ConnectFour extends Game {
 		setWindow(new GameWindow(this));
 		getPlayer1().isYourMove();
 		getWindow().displayPlayerTurn(Game.PlayerTurn.PLAYER1);
-		if ((getPlayer1() instanceof ComputerHardPlayer || getPlayer1() instanceof 
-		                           AIEasy) && (getPlayer2() instanceof Human)) {
+		if ((getPlayer1() instanceof ComputerHardPlayer || getPlayer1() 
+				instanceof AIEasy) && (getPlayer2() instanceof Human)) {
 			getPlayer1().sendMove();
 		}
 		startTimer();
@@ -89,8 +90,8 @@ public class ConnectFour extends Game {
 		setPlayerTurn(PlayerTurn.PLAYER1);
 		getPlayer1().isYourMove();
 		getWindow().displayPlayerTurn(Game.PlayerTurn.PLAYER1);
-		if ((getPlayer1() instanceof ComputerHardPlayer || getPlayer1() instanceof 
-		                           AIEasy) && (getPlayer2() instanceof Human)) {
+		if ((getPlayer1() instanceof ComputerHardPlayer || getPlayer1() 
+				instanceof AIEasy) && (getPlayer2() instanceof Human)) {
 			getPlayer1().sendMove();
 		}
 		if (test || m_test) {
@@ -101,7 +102,7 @@ public class ConnectFour extends Game {
 	/**
      * resets the game so a game can be loaded from file
      * 
-     * \param Player p - player whos turn it is 
+     * \param p - player whose turn it is 
      * \throws InterruptedException
      */
     public void resetGame(Player p ) throws InterruptedException {
@@ -328,9 +329,9 @@ public class ConnectFour extends Game {
 	 * Checks right from the last counter that has been placed to check if there
 	 * are 4 counter of the same colour in a row
 	 * 
-	 * \param xy the piece that has been placed
+	 * \param x the x cooridnate of the piece that has been placed
+	 * \param y the y cooridnate of the piece that has been placed
 	 * 
-	 * \param Player check if the square is empty
 	 */
 	private void checkRight(int x, int y) {
 		boolean test = false;

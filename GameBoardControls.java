@@ -4,14 +4,15 @@ import java.awt.event.MouseEvent;
 
 /**
  * \\file GameBoardControls.java
- * \author Gavin Tsang 658679, Chun	Kit So
+ * \author Gavin Tsang 658679 A4, Chun	Kit So A5, Mathew Lloyd A6
  * \date 20/02/2014
  * 
  * \brief This class processes user interactions on the Grid Board.
  *  
  * This class is used to retrieve the square on the grid GUI in which
  * the player has clicked. The grid clicked is then passed to the moveMade
- * method within the controls Class which is then called.
+ * method within the controls Class which is then called. --CHANGED on 01/05/14
+ * to relect changes in class hierarchy with the difference of hard AI
  */
 public class GameBoardControls extends MouseAdapter {
 	

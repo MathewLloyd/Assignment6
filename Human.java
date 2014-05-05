@@ -1,7 +1,7 @@
 import java.awt.Color;
 /**
  *	\\file    -Human.java
- *	\author  -G.Howard
+ *	\author  -G.Howard A4
  *	\date    -20/02/2014
  *
  *  \brief   sets which player's move it is then sends this to

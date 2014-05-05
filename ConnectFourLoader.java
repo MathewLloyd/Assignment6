@@ -1,6 +1,6 @@
 /**
  * \\file -ConnectFourLoader.java 
- * \author -Jake Plumley
+ * \author -Jake Plumley A5
  * \date -26th March 14
  * 
  * \see FileManager.java

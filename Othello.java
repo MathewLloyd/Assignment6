@@ -4,7 +4,7 @@ import java.util.*;
 
 /**
  *  \\file	-Othello.Java
- * 	\author	-B. Golightly, Mathew Lloyd 711293
+ * 	\author	-B. Golightly A4, Mathew Lloyd 711293 A5, A6
  * 	\date	-12/02/2014
  * 	
  * 	\brief	Extends Game with the rules of Othello as specified. 
@@ -14,6 +14,7 @@ import java.util.*;
  * In the case of Othello this means returning a list of captured 
  * pieces; other classes that also extend game may only return a list 
  * of one item i.e. only the piece that is the result of the move.
+ * --CHANGED on 01/05/14 to add the change of hardAI class
  */
 
 public class Othello extends Game{
@@ -113,8 +114,8 @@ public class Othello extends Game{
 		                                                              PLAYER1));
 		    getPlayer1().isYourMove();
 		    getWindow().displayPlayerTurn(Game.PlayerTurn.PLAYER1);
-			if 	((getPlayer1() instanceof ComputerHardPlayer||getPlayer1() instanceof 
-			                        AIEasy) && (getPlayer2() instanceof Human)){
+			if 	((getPlayer1() instanceof ComputerHardPlayer||getPlayer1() 
+					instanceof AIEasy) && (getPlayer2() instanceof Human)){
 				getPlayer1().sendMove();
 			}
 		}
@@ -554,11 +555,12 @@ public class Othello extends Game{
 				getGrid().setCoordinate(changes.get(i));
 			}	
 			getWindow().displayGrid(getGrid());
-			if (((getPlayer1() instanceof ComputerHardPlayer || getPlayer1() instanceof 
-			            AIEasy) && changes.get(0).getValue() == Game.PlayerTurn.
-			            PLAYER1)|| ((getPlayer2() instanceof ComputerHardPlayer || 
-			            getPlayer2() instanceof AIEasy) && changes.get(0).
-			                            getValue() == Game.PlayerTurn.PLAYER2)){
+			if (((getPlayer1() instanceof ComputerHardPlayer || getPlayer1() 
+					instanceof  AIEasy) && changes.get(0).getValue() == 
+					Game.PlayerTurn.PLAYER1)|| ((getPlayer2() instanceof
+							ComputerHardPlayer || getPlayer2() instanceof 
+							AIEasy) && changes.get(0).getValue() ==
+							Game.PlayerTurn.PLAYER2)){
 				getWindow().SetAImove(changes.get(0));
 			}
 			getWindow().SetAnimation("flip", changes);

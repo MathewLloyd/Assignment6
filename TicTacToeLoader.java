@@ -1,4 +1,15 @@
-
+/**
+ * \\file -OthelloLoader.java 
+ * \author - Mathew Lloyd A6
+ * \date -2nd May 2014
+ * 
+ * \see FileManager.java
+ * \see Loader.java
+ * 
+ * \brief Class to set file paths for the Loading of TicTacToe
+ * 
+ * This Class extends the Loader class to and controls the path of the save file
+ */
 public class TicTacToeLoader extends Loader{
     /**
      * Constructor to initiate the loading of the files
@@ -8,7 +19,7 @@ public class TicTacToeLoader extends Loader{
     public TicTacToeLoader(Game game) {
         boolean test = false;
         if (test || m_test) {
-            System.out.println("ConnectFourLoader :: ConnectFourLoader() "
+            System.out.println("TicTacToeLoader :: TicTacToeLoader() "
                                                                      + "BEGIN");
         }
         
@@ -18,7 +29,7 @@ public class TicTacToeLoader extends Loader{
         loadAll();
         
         if (test || m_test) {
-            System.out.println("ConnectFourLoader :: ConnectFourLoader() END");
+            System.out.println("TicTacToeLoader :: TicTacToeLoader() END");
         }
     }
     
@@ -31,7 +42,7 @@ public class TicTacToeLoader extends Loader{
     public TicTacToeLoader(Game game, String s) {
         boolean test = false;
         if (test || m_test) {
-            System.out.println("ConnectFourLoader :: ConnectFourLoader() "
+            System.out.println("TicTacToeLoader :: TicTacToeLoader() "
                                                                      + "BEGIN");
         }
         
@@ -39,7 +50,7 @@ public class TicTacToeLoader extends Loader{
         setPath(TICTACTOE_TEST_PATH);
         
         if (test || m_test) {
-            System.out.println("ConnectFourLoader :: ConnectFourLoader() END");
+            System.out.println("TicTacToeLoader :: TicTacToeLoader() END");
         }
     }
     

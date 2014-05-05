@@ -1,6 +1,6 @@
 /**
  *  \\file -Grid.java
- * 	\author - J.Dong
+ * 	\author - J.Dong A4
  *	\date	-12/02/2014
  *
  *	\brief This class contains methods to store information on grid 

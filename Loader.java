@@ -2,7 +2,7 @@ import java.awt.Color;
 import java.util.Scanner;
 /**
  * \\file -Loader.java 
- * \author - Gavin Bailey 711036, Chun Kit So
+ * \author - Gavin Bailey 711036 A5, Chun Kit So A5, Mathew Lloyd A6
  * \date -26th March 14
  * 
  * \see FileManager.java
@@ -12,7 +12,8 @@ import java.util.Scanner;
  * \brief Class to handle loading data from files
  * 
  * This Class extends the FileManager class to implement the loading of data 
- * from files.
+ * from files. -- CHANGED 03/05/2014 Found the fault as to why it wouldn't load
+ * a game after the AI files changed.
  */
 public class Loader extends FileManager{
     /**
@@ -187,15 +188,11 @@ public class Loader extends FileManager{
         switch (m_playerInfo[PLAYER_TYPE_INDEX]) {
             case HUMAN_PLAYER: return new Human(getGame());
             case EASY_AI_PLAYER: return new AIEasy(getGame());
-            case HARD_OTHELLO_PLAYER: 
-                if (getGame() instanceof Othello) {
-                    return new OthelloAI(getGame());
-                } else {
-                    m_allValid = false;
-                }
-            case HARD_CONNECTFOUR_PLAYER: 
-                if (getGame() instanceof ConnectFour) {
-                    return new ConnectFourAI(getGame());
+            case HARD_PLAYER: 
+                if (getGame() instanceof ConnectFour || 
+                		getGame() instanceof Othello || 
+                		getGame() instanceof TicTacToe) {
+                    return new ComputerHardPlayer(getGame());
                 } else {
                     m_allValid = false;
                 }
@@ -424,6 +421,7 @@ public class Loader extends FileManager{
     /** strings for checking player type */
     private final String HUMAN_PLAYER = "Human";
     private final String EASY_AI_PLAYER = "AIEasy";
+    private final String HARD_PLAYER = "ComputerHardPlayer";
     private final String HARD_OTHELLO_PLAYER = "OthelloAI";
     private final String HARD_CONNECTFOUR_PLAYER = "ConnectFourAI";
     /** ints to hold timer information */

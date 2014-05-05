@@ -4,7 +4,7 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 /**
  *  \\file	PlayerSettings.Java
- * 	\author	Callum Hazelton 709161, Gavin Bailey 711036
+ * 	\author	Callum Hazelton 709161 A4, Gavin Bailey 711036 A5, Mathew Lloyd A6
  * 	\date	14/02/2014
  * 	
  * \brief Allows you to change settings of player 1 and player 2
@@ -13,7 +13,10 @@ import javax.swing.*;
  * difficulty of ai. 
  * Changes to the class involved separating the action listeners to comply with 
  * code conventions. Other changes include adding the substance to the resume
- * game button to allow it load the file. 
+ * game button to allow it load the file.
+ * --CHANGED 01/05/14 to add the settings for the new game and changing the 
+ * hard Ai class to load. Also changed is the checking for load and save files
+ * for the new game. 
  */
 public class PlayerSettings extends JFrame {
 
@@ -54,8 +57,9 @@ public class PlayerSettings extends JFrame {
 	 * Runs methods inside
 	 * 
 	 * \param game instance of game class
-	 * \param isOthello - boolean indicating whether or not to limit player 
-	 * colour choices in othello.
+	 * \param gameType is a string that contains three possible strings: 
+	 * othello, connectfour or tictactoe, these correspond to what type of game
+	 * it is.
 	 */
 	public PlayerSettings(Game game, String gameType) {
 		boolean test = false;

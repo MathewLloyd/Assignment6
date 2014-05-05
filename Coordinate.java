@@ -1,6 +1,6 @@
 /**
  * \\file -Coordinate.Java 
- * \author -B. Golightly (659715) 
+ * \author -B. Golightly (659715) A4
  * \date -12/02/2014
  * 
  * \brief Coordinate objects are used to hold information about one individual

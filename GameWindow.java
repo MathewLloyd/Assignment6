@@ -7,7 +7,7 @@ import java.util.*;
 import javax.swing.*;
 /**
  * \\file GameWindow.java
- * \author Gavin Tsang 658679, Chun Kit So
+ * \author Gavin Tsang 658679 A4, Chun Kit So A5
  * \date 27/02/2014
  * 
  * \brief This class is used to initialise the main GUI window.
@@ -15,14 +15,16 @@ import javax.swing.*;
  * The main GUI window contains all the graphical elements and user interfaces.
  * Also provides methods to manipulate the elements within the window such as
  * displaying error messages or updating the grid and labels.
+ * --CHANGED 01/05/14 to reflect the new classes for hard AI & adding the new 
+ * files for saving and loading of the new game
  */
 public class GameWindow extends JFrame {
 	
 	/**
 	 * Returns the main game class which this window is taking commands from.
 	 * 
-	 * \return m_gameControl - the pointer towards the game class that is currently
-	 * being used.
+	 * \return m_gameControl - the pointer towards the game class that is 
+	 * currently being used.
 	 */
 	public Game getGame() {
 		boolean test = false;
@@ -429,12 +431,14 @@ public class GameWindow extends JFrame {
 		getDrawing().getGridPanel().SetRun(false);
 		if(m_gameControl.getPlayer1() instanceof ComputerHardPlayer){
 			((ComputerHardPlayer)(m_gameControl.getPlayer1())).SetRun(false);
-			m_player1 = new ComputerHardPlayer(m_game,m_gameControl.getPlayer1().
-			      getPlayerName(),m_gameControl.getPlayer1().getPlayerColour());
+			m_player1 = new ComputerHardPlayer(m_game,m_gameControl.
+					getPlayer1().getPlayerName(),m_gameControl.getPlayer1()
+					.getPlayerColour());
 		} else if(m_gameControl.getPlayer1() instanceof ComputerHardPlayer){
 			((ComputerHardPlayer)(m_gameControl.getPlayer1())).SetRun(false);
-			m_player1 = new ComputerHardPlayer(m_game,m_gameControl.getPlayer1().
-			      getPlayerName(),m_gameControl.getPlayer1().getPlayerColour());
+			m_player1 = new ComputerHardPlayer(m_game,m_gameControl.
+					getPlayer1().getPlayerName(),m_gameControl.getPlayer1()
+					.getPlayerColour());
 		} else if(m_gameControl.getPlayer1() instanceof AIEasy){
 			((AIEasy)(m_gameControl.getPlayer1())).SetRun(false);
 			m_player1 = new AIEasy(m_game,m_gameControl.getPlayer1().
@@ -445,12 +449,14 @@ public class GameWindow extends JFrame {
 		}
 		if(m_gameControl.getPlayer2() instanceof ComputerHardPlayer){
 			((ComputerHardPlayer)(m_gameControl.getPlayer2())).SetRun(false);
-			m_player2 = new ComputerHardPlayer(m_game,m_gameControl.getPlayer2().
-			      getPlayerName(),m_gameControl.getPlayer2().getPlayerColour());
+			m_player2 = new ComputerHardPlayer(m_game,m_gameControl
+					.getPlayer2().getPlayerName(),m_gameControl.getPlayer2()
+					.getPlayerColour());
 		} else if(m_gameControl.getPlayer2() instanceof ComputerHardPlayer){
 			((ComputerHardPlayer)(m_gameControl.getPlayer2())).SetRun(false);
-			m_player2 = new ComputerHardPlayer(m_game,m_gameControl.getPlayer2().
-			      getPlayerName(),m_gameControl.getPlayer2().getPlayerColour());
+			m_player2 = new ComputerHardPlayer(m_game,m_gameControl.
+					getPlayer2().getPlayerName(),m_gameControl.getPlayer2()
+					.getPlayerColour());
 		} else if(m_gameControl.getPlayer2() instanceof AIEasy){
 			((AIEasy)(m_gameControl.getPlayer2())).SetRun(false);
 			m_player2 = new AIEasy(m_game,m_gameControl.getPlayer2().
@@ -606,9 +612,11 @@ public class GameWindow extends JFrame {
 
             
             if(m_gameControl.getPlayer1() instanceof ComputerHardPlayer){
-                ((ComputerHardPlayer)(m_gameControl.getPlayer1())).SetRun(false);
+                ((ComputerHardPlayer)(m_gameControl.getPlayer1()))
+                .SetRun(false);
             } else if(m_gameControl.getPlayer1() instanceof ComputerHardPlayer){
-                ((ComputerHardPlayer)(m_gameControl.getPlayer1())).SetRun(false);
+                ((ComputerHardPlayer)(m_gameControl.getPlayer1()))
+                .SetRun(false);
             } else if(m_gameControl.getPlayer1() instanceof AIEasy){
                 ((AIEasy)(m_gameControl.getPlayer1())).SetRun(false);
             }

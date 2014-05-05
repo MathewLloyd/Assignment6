@@ -2,13 +2,14 @@ import java.util.*;
 import java.awt.Color;
 /**
  * \\file -AIEasy.java 
- * \author -Tyrone Bramwell, Chak Yak Lam
+ * \author -Tyrone Bramwell A4, Chak Yak Lam A4
  * \date -26th March 14
  * 
  * \brief This class contains methods to create and run a AI 
  * 
- * creates AI for othello and connectfour which randomly picks a valid move and 
- * performs the move.
+ * creates AI for othello and connectfour and TicTacToe which randomly picks a
+ *  valid move and performs the move. --MODIFIED 1st May 14 -> Changing class
+ *  hierarchy
  */
 public class AIEasy extends Computer {
     /**

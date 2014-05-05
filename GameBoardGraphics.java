@@ -14,7 +14,7 @@ import java.lang.NullPointerException;
 
 /**
  * \\file GameBoardGraphics.java 
- * \author Daniel 709547, Chak Yan Lam
+ * \author Daniel 709547 A4, Chak Yan Lam A5, Mathew Lloyd A6
  * \date 25/02/2014 
  * 
  * \brief
@@ -22,6 +22,7 @@ import java.lang.NullPointerException;
  * 
  * This class deals with all the graphics of the actual game board itself, being
  * called whenever the gameboard is updated or needs to be repainted.
+ * --CHANGED 01/05/14 to add the new game and it's graphics properties
  */
 public class GameBoardGraphics extends JComponent implements
 		MouseMotionListener {
@@ -495,9 +496,11 @@ public class GameBoardGraphics extends JComponent implements
 					|| PLAYER1_COLOUR.equals(Color.WHITE)) {
 				if (m_AImove != null && !m_changes.isEmpty() && ((m_changes.
 				        get(0).getValue() == Game.PlayerTurn.PLAYER1 &&
-						(m_player1 instanceof ComputerHardPlayer || m_player1 instanceof 
-						AIEasy)) || (m_changes.get(0).getValue() == Game.
-						PlayerTurn.PLAYER2 && (m_player2 instanceof ComputerHardPlayer 
+						(m_player1 instanceof ComputerHardPlayer || m_player1 
+								instanceof AIEasy)) || 
+								(m_changes.get(0).getValue() == 
+								Game.PlayerTurn.PLAYER2 && 
+								(m_player2 instanceof ComputerHardPlayer 
 						                    || m_player2 instanceof AIEasy)))) {
 
 					g2.setColor(Color.RED);
@@ -1009,10 +1012,10 @@ public class GameBoardGraphics extends JComponent implements
 			"/resource/naught.png"));
 	private final BufferedImage CROSSES = ImageIO.read(getClass().getResource(
 			"/resource/crosses.png"));
-	private final BufferedImage NAUGHTSBLUE = ImageIO.read(getClass().getResource(
-			"/resource/naughtBlue.png"));
-	private final BufferedImage CROSSESBLUE = ImageIO.read(getClass().getResource(
-			"/resource/crossesBlue.png"));
+	private final BufferedImage NAUGHTSBLUE = ImageIO.read(getClass()
+			.getResource("/resource/naughtBlue.png"));
+	private final BufferedImage CROSSESBLUE = ImageIO.read(getClass()
+			.getResource("/resource/crossesBlue.png"));
 	private final BufferedImage TICBOARD = ImageIO.read(getClass().getResource(
 			"/resource/ticBoard.png"));
 	private final BufferedImage TICBOARD2 = ImageIO.read(getClass().getResource(

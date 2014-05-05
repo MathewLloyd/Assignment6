@@ -3,17 +3,16 @@ import java.io.IOException;
 import java.util.*;
 
 /**
- *  \\file	-Othello.Java
- * 	\author	-B. Golightly, Mathew Lloyd 711293
- * 	\date	-12/02/2014
+ *  \\file	-TicTacToe.Java
+ * 	\author	-Mathew Lloyd A6
+ * 	\date	-01/05/2014
  * 	
  * 	\brief	Extends Game with the rules of Othello as specified. 
  * 
  * Methods are move so that the AI can know how good it is, and provides a way 
  * to take a move, return a list of changes after a move has been made. 
- * In the case of Othello this means returning a list of captured 
- * pieces; other classes that also extend game may only return a list 
- * of one item i.e. only the piece that is the result of the move.
+ * In the case of TicTacToe the game checks in all directions for maximum number
+ * of pieces in a row and then also has methods to check validity of a move.
  */
 
 public class TicTacToe extends Game{
@@ -66,17 +65,19 @@ public class TicTacToe extends Game{
 	public void start() throws InterruptedException {
 		boolean test = false;
 
-		if (test || m_test) {
-			System.out.println("ConnectFour::Start() BEGIN");
-		}
+		
 		setWindow(new GameWindow(this));
 		getPlayer1().isYourMove();
 		getWindow().displayPlayerTurn(Game.PlayerTurn.PLAYER1);
-		if ((getPlayer1() instanceof ComputerHardPlayer || getPlayer1() instanceof 
-		                           AIEasy) && (getPlayer2() instanceof Human)) {
+		if ((getPlayer1() instanceof ComputerHardPlayer || getPlayer1() 
+				instanceof  AIEasy) && (getPlayer2() instanceof Human)) {
 			getPlayer1().sendMove();
 		}
 		startTimer();
+		
+		if (test || m_test) {
+			System.out.println("TicTacToe::Start() END");
+		}
 	}
 
 	/**
@@ -86,18 +87,18 @@ public class TicTacToe extends Game{
 	public void resetGame() throws InterruptedException {
 		boolean test = false;
 		if (test || m_test) {
-			System.out.println("ConnectFour::resetGame() BEGIN");
+			System.out.println("TicTacToe::resetGame() BEGIN");
 		}
 		setWinner(Game.PlayerTurn.NONE);
 		setPlayerTurn(PlayerTurn.PLAYER1);
 		getPlayer1().isYourMove();
 		getWindow().displayPlayerTurn(Game.PlayerTurn.PLAYER1);
-		if ((getPlayer1() instanceof ComputerHardPlayer || getPlayer1() instanceof 
-		                           AIEasy) && (getPlayer2() instanceof Human)) {
+		if ((getPlayer1() instanceof ComputerHardPlayer || getPlayer1() 
+				instanceof  AIEasy) && (getPlayer2() instanceof Human)) {
 			getPlayer1().sendMove();
 		}
 		if (test || m_test) {
-			System.out.println("ConnectFour::resetGame() END");
+			System.out.println("TicTacToe::resetGame() END");
 		}
 	}
 	
@@ -110,7 +111,7 @@ public class TicTacToe extends Game{
     public void resetGame(Player p ) throws InterruptedException {
         boolean test = false;
         if (test || m_test) {
-            System.out.println("ConnectFour::resetGame() BEGIN");
+            System.out.println("TicTacToe::resetGame() BEGIN");
         }
         setWinner(Game.PlayerTurn.NONE);
         if ((p instanceof Human)) {
@@ -119,7 +120,7 @@ public class TicTacToe extends Game{
             p.sendMove();
         }
         if (test || m_test) {
-            System.out.println("ConnectFour::resetGame() END");
+            System.out.println("TicTacToe::resetGame() END");
         }
     }
 
@@ -131,16 +132,16 @@ public class TicTacToe extends Game{
 	private boolean validMove() {
 		boolean test = false;
 		if (test || m_test) {
-			System.out.println("ConnectFour::validMove() BEGIN");
+			System.out.println("TicTacToe::validMove() BEGIN");
 		}
 		if (getTurnCount() == GAME_WIDTH * GAME_HEIGHT) {
 			if (test)
-				System.out.println("ConnectFour::validMove() - No more valid "
+				System.out.println("TicTacToe::validMove() - No more valid "
 				                                                     + "moves");
 			return false;
 		} else {
 			if (test || m_test) {
-				System.out.println("ConnectFour::validMove() END");
+				System.out.println("TicTacToe::validMove() END");
 			}
 			return true;
 		}
@@ -175,7 +176,13 @@ public class TicTacToe extends Game{
 		if (getGrid().getCoordinate(xy.getX(), xy.getY()).getValue() ==
 			Game.PlayerTurn.PLAYER1 || 
 			getGrid().getCoordinate(xy.getX(), xy.getY()).getValue() ==
-			Game.PlayerTurn.PLAYER2) { return false; }
+			Game.PlayerTurn.PLAYER2) {if (test || m_test) {
+	            System.out.println("TicTacToe :: isValidMove() END");
+	        } return false; }
+		
+		if (test || m_test) {
+            System.out.println("TicTacToe :: isValidMove() END");
+        }
 		return true;
 	}
 
@@ -191,10 +198,10 @@ public class TicTacToe extends Game{
 		boolean test = false;
 
 		if (test || m_test)
-			System.out.println("ConnectFour::MoveMade() - BEGIN");
+			System.out.println("TicTacToe::MoveMade() - BEGIN");
 		if (validateMove(move)) {
 			if (test || m_test)
-				System.out.println("ConnectFour::MoveMade() - Move is valid");
+				System.out.println("TicTacToe::MoveMade() - Move is valid");
 			ArrayList<Coordinate> changes = takeMove(move);
 			for (int i = 0; i < changes.size(); i++) {
 				getGrid().setCoordinate(changes.get(i));
@@ -223,7 +230,7 @@ public class TicTacToe extends Game{
 
 		if (isOver()) {
 			if (test || m_test)
-				System.out.println("ConnectFour::MoveMade() - ConnectFour is "
+				System.out.println("TicTacToe::MoveMade() - TicTacToe is "
 				                                                  + "finished");
 			new EndDisplay(this);
 			emptyWin();
@@ -231,17 +238,17 @@ public class TicTacToe extends Game{
 			if (getPlayerTurn() == PlayerTurn.PLAYER1) {
 				if (test || m_test)
 					System.out
-							.println("ConnectFour::MoveMade() - Player1 next");
+							.println("TicTacToe::MoveMade() - Player1 next");
 				getPlayer1().isYourMove();
 			} else if (getPlayerTurn() == PlayerTurn.PLAYER2) {
 				if (test || m_test)
 					System.out
-							.println("ConnectFour::MoveMade() - Player2 next");
+							.println("TicTacToe::MoveMade() - Player2 next");
 				getPlayer2().isYourMove();
 			}
 		}
 		if (test || m_test)
-			System.out.println("ConnectFour::MoveMade() - END");
+			System.out.println("TicTacToe::MoveMade() - END");
 	}
 
 	/**
@@ -254,21 +261,16 @@ public class TicTacToe extends Game{
 	protected ArrayList<Coordinate> takeMove(Coordinate xy) {
 		boolean test = false;
 		if (test || m_test)
-			System.out.println("ConnectFour::takeMove() - BEGIN");
+			System.out.println("TicTacToe::takeMove() - BEGIN");
 		Grid grid = getGrid();
 		ArrayList<Coordinate> result = new ArrayList<Coordinate>();
 
 		for (int y = GAME_HEIGHT - 1; y >= 0; y--) {
 			result.add(xy);
-			/*if (grid.getCoordinate(xy.getX(), y).getValue() == 
-			                                             Game.PlayerTurn.NONE) {
-				result = new ArrayList<Coordinate>();
-				result.add(new Coordinate(xy.getX(), y, xy.getValue()));
-				break;
-			}*/
+		
 		}
 		if (test || m_test)
-			System.out.println("ConnectFour::takeMove() - END");
+			System.out.println("TicTacToe::takeMove() - END");
 		return result;
 	}
 
@@ -280,7 +282,7 @@ public class TicTacToe extends Game{
 	public boolean isOver() {
 		boolean test = false;
 		if (test || m_test)
-			System.out.println("ConnectFour::isOver() - BEGIN");
+			System.out.println("TicTacToe::isOver() - BEGIN");
 		checkWinner();
 		Iterator<Coordinate> iterator = m_win.iterator();
 		while (iterator.hasNext()) {
@@ -289,12 +291,12 @@ public class TicTacToe extends Game{
 		if (getWinner() == Game.PlayerTurn.PLAYER1
 				                    || getWinner() == Game.PlayerTurn.PLAYER2) {
 			if (test || m_test)
-				System.out.println("ConnectFour::IsOver() - A Player has won");
+				System.out.println("TicTacToe::IsOver() - A Player has won");
 			getTimer().setRunning();
 			return true;
 		} else {
 			if (test || m_test)
-				System.out.println("ConnectFour::IsOver() - Valid move");
+				System.out.println("TicTacToe::IsOver() - Valid move");
 			return (!validMove());
 		}
 	}
@@ -305,7 +307,7 @@ public class TicTacToe extends Game{
 	private void checkWinner() {
 		boolean test = false;
 		if (test || m_test)
-			System.out.println("ConnectFour::checkWinner() - BEGIN");
+			System.out.println("TicTacToe::checkWinner() - BEGIN");
 		for (int y = 0; y < GAME_HEIGHT; y++) {
 			for (int x = 0; x < GAME_WIDTH; x++) {
 
@@ -317,16 +319,15 @@ public class TicTacToe extends Game{
 
 		}
 		if (test || m_test)
-			System.out.println("ConnectFour::checkWinner() - END");
+			System.out.println("TicTacToe::checkWinner() - END");
 	}
 
 	/**
 	 * Checks right from the last counter that has been placed to check if there
 	 * are 4 counter of the same colour in a row
 	 * 
-	 * \param xy the piece that has been placed
-	 * 
-	 * \param Player check if the square is empty
+	 * \param x the x coordinate of the piece that has been placed
+	 * \param y the y coordinate of the piece that has been placed
 	 */
 	private void checkRight(int x, int y) {
 		boolean test = false;
@@ -765,15 +766,15 @@ public class TicTacToe extends Game{
 	protected PlayerTurn nextPlayer() {
 		boolean test = false;
 		if (test || m_test)
-			System.out.println("ConnectFour::PlayerTurn() - BEGIN");
+			System.out.println("TicTacToe::PlayerTurn() - BEGIN");
 		if (getPlayerTurn() == Game.PlayerTurn.PLAYER1) {
 			if (test || m_test)
-				System.out.println("ConnectFour::PlayerTurn() - PLAYER1 turn "
+				System.out.println("TicTacToe::PlayerTurn() - PLAYER1 turn "
 				                                                 + "finished ");
 			return Game.PlayerTurn.PLAYER2;
 		} else {
 			if (test || m_test)
-				System.out.println("ConnectFour::PlayerTurn() - PLAYER2 turn "
+				System.out.println("TicTacToe::PlayerTurn() - PLAYER2 turn "
 				                                                 + "finished ");
 			return Game.PlayerTurn.PLAYER1;
 		}
@@ -797,26 +798,26 @@ public class TicTacToe extends Game{
 			IOException {
 		boolean test = true;
 		if (test || m_test) {
-			ConnectFour game = new ConnectFour();
+			TicTacToe game = new TicTacToe();
 			Player player1 = new Human(game);
 			Player player2 = new ComputerHardPlayer(game);
 			player1.setPlayerName("Gavin");
 			player2.setPlayerName("So");
-			player1.setPlayerColour(Color.RED);
-			player2.setPlayerColour(Color.YELLOW);
+			player1.setPlayerColour(Color.DARK_GRAY);
+			player2.setPlayerColour(Color.BLUE);
 			game.setPlayer1(player1);
 			game.setPlayer2(player2);
 			if (player1.getPlayerName() == "Gavin")
 				System.out.println("Player Name Added");
 			if(player1.getGame() == game)
 				System.out.println("Game Added Correctly");
-			if(player1.getPlayerColour() == Color.RED)
+			if(player1.getPlayerColour() == Color.DARK_GRAY)
 				System.out.println("Color Added Correctly");
 			if (player2.getPlayerName() == "So")
 				System.out.println("Player Name Added");
 			if(player2.getGame() == game)
 				System.out.println("Game Added Correctly");
-			if(player2.getPlayerColour() == Color.YELLOW)
+			if(player2.getPlayerColour() == Color.BLUE)
 				System.out.println("Color Added Correctly");
 			Coordinate testCooor = new Coordinate(COUNT2, COUNT3,
 					                                        PlayerTurn.PLAYER1);

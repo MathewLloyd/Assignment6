@@ -1,7 +1,7 @@
 import java.awt.Color;
 /**
  * \\file Controls.java
- * \author Daniel 709547
+ * \author Daniel 709547 A4
  * \date 20/02/2014
  * \brief Main controls class which controls all the game/user controls
  *

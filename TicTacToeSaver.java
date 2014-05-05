@@ -1,4 +1,15 @@
-
+/**
+ * \\file -ConnectFourSaver.java 
+ * \author - Mathew Lloyd A6
+ * \date -2nd May 14
+ * 
+ * \see FileManager.java
+ * \see Saver.java
+ * 
+ * \brief Class to set file paths for the Saving of TicTacToe
+ * 
+ * This Class extends the Saver class to and controls the path of the save files
+ */
 public class TicTacToeSaver  extends Saver{
     /**
      * Constructor to initiate the saving of the files

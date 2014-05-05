@@ -2,7 +2,7 @@ import java.util.*;
 
 /**
  * \\file Game.Java
- * \author G. Tsang, Chun Kit So
+ * \author G. Tsang A4, Chun Kit So A5
  * \date 11/02/2014
  * 
  * \brief Main control class which processes the overall game logic.
@@ -467,24 +467,24 @@ public abstract class Game {
         
 		if(getPlayer1() instanceof AIEasy){
 			((AIEasy)getPlayer1()).SetRun(false);
-		} else if(getPlayer1() instanceof OthelloAI) {
-			((OthelloAI)getPlayer1()).SetRun(false);
+		} else if(getPlayer1() instanceof ComputerHardPlayer) {
+			((ComputerHardPlayer)getPlayer1()).SetRun(false);
 		}
 		if(getPlayer2() instanceof AIEasy){
 			((AIEasy)getPlayer2()).SetRun(false);
-		} else if(getPlayer2() instanceof OthelloAI) {
-			((OthelloAI)getPlayer2()).SetRun(false);
+		} else if(getPlayer2() instanceof ComputerHardPlayer) {
+			((ComputerHardPlayer)getPlayer2()).SetRun(false);
 		}
 		getWindow().Displaymessage(msg);
 		if(getPlayer1() instanceof AIEasy){
 			((AIEasy)getPlayer1()).SetRun(true);
-		} else if(getPlayer1() instanceof OthelloAI) {
-			((OthelloAI)getPlayer1()).SetRun(true);
+		} else if(getPlayer1() instanceof ComputerHardPlayer) {
+			((ComputerHardPlayer)getPlayer1()).SetRun(true);
 		}
 		if(getPlayer2() instanceof AIEasy){
 			((AIEasy)getPlayer2()).SetRun(true);
-		} else if(getPlayer2() instanceof OthelloAI) {
-			((OthelloAI)getPlayer2()).SetRun(true);
+		} else if(getPlayer2() instanceof ComputerHardPlayer) {
+			((ComputerHardPlayer)getPlayer2()).SetRun(true);
 		}
 		
         if (test || m_test) {
